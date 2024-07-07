@@ -5,7 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HttpUtli {
+public class HttpUtil {
 	// Static method to fetch data from the URL using a GET request
 	// it takes in the url string and returns the JSON object as a string
 	public static String fetchData(String urlString) {
@@ -15,7 +15,7 @@ public class HttpUtli {
 			HttpClient client = HttpClient.newHttpClient();
 			// build HTTP request object
 			HttpRequest request = HttpRequest.newBuilder()
-					.uri(new URI(urlString)) // set the URI to urlString
+					.uri(URI.create(urlString)) // set the URI to urlString
 					.GET() // specify GET as the request type
 					.build(); // build the object
 
@@ -35,3 +35,8 @@ public class HttpUtli {
 	}
 
 }
+
+
+// resources
+// https://naveen-metta.medium.com/java-11-http-client-api-unleashing-the-power-of-modern-web-communications-d7c16753d982
+// https://openjdk.org/groups/net/httpclient/recipes.html
