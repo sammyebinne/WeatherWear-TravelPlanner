@@ -11,7 +11,7 @@
 		currency conversion rates</description>
 
 	<dependencies>
-	
+
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -37,6 +37,15 @@
 			<version>5.10.3</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 
 	</dependencies>
 
