@@ -28,5 +28,44 @@ public class WeatherData {
 		this.description = description;
 	}
 	
-	//
+	
+	// set up getters to retrieve private instance variables
+	public String getCity() {
+		return city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public double getTemperature() {
+		return temperature;
+	}
+
+	public int getHighTemp() {
+		return highTemp;
+	}
+
+	public int getLowTemp() {
+		return lowTemp;
+	}
+
+	public int getPressure() {
+		return pressure;
+	}
+
+	public int getHumidity() {
+		return humidity;
+	}
+
+	public double getWindSpeed() {
+		return windSpeed;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
+	
+	
 }
