@@ -1,41 +1,39 @@
 package com.myapp.model;
 
+import java.time.LocalDate;
+
 // here we will populate all of the data fetched from the weather API
 public class WeatherData {
-	
-	// the below are instance variables representing the different data we get back from our fetch call
-	private String city;
-	private String country;
+
+	// we need an instance variable to store the dates (this would be the key in our
+	// Map)
+	private LocalDate date;
+
+	// the below are instance variables representing the different data we get back
+	// from our fetch call
 	private double temperature;
 	private int highTemp;
 	private int lowTemp;
-	private int pressure;
 	private int humidity;
 	private double windSpeed;
 	private String description;
+	
 
 	// we then create a parameterized constructor
-	public WeatherData(String city, String country, double temperature, int highTemp, int lowTemp, int pressure,
-			int humidity, double windSpeed, String description) {
-		this.city = city;
-		this.country = country;
+	public WeatherData(LocalDate date, double temperature, int highTemp, int lowTemp, int humidity, double windSpeed,
+			String description) {
+		this.date = date;
 		this.temperature = temperature;
 		this.highTemp = highTemp;
 		this.lowTemp = lowTemp;
-		this.pressure = pressure;
 		this.humidity = humidity;
 		this.windSpeed = windSpeed;
 		this.description = description;
 	}
-	
-	
-	// set up getters to retrieve private instance variables
-	public String getCity() {
-		return city;
-	}
 
-	public String getCountry() {
-		return country;
+	// set up getters to retrieve private instance variables
+	public LocalDate getDate() {
+		return date;
 	}
 
 	public double getTemperature() {
@@ -50,10 +48,6 @@ public class WeatherData {
 		return lowTemp;
 	}
 
-	public int getPressure() {
-		return pressure;
-	}
-
 	public int getHumidity() {
 		return humidity;
 	}
@@ -65,7 +59,7 @@ public class WeatherData {
 	public String getDescription() {
 		return description;
 	}
-	
-	
-	
+
 }
+
+// java.time package - https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html

@@ -1,0 +1,12 @@
+com/myapp/model/WeatherData.class
+com/myapp/controller/MainController.class
+com/myapp/views/MainView.class
+com/myapp/service/WeatherService.class
+com/myapp/MainApp$1.class
+com/myapp/utils/HttpUtil.class
+com/myapp/model/CurrencyData.class
+com/myapp/MainApp.class
+com/myapp/utils/JsonUtil.class
+com/myapp/service/CurrencyService.class
+com/myapp/utils/WeatherApiKeyUtil.class
+com/myapp/model/WeatherForecastData.class

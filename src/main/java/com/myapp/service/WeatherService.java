@@ -1,6 +1,6 @@
 package com.myapp.service;
 
-// we'll need to import the WeatherData model, the HttpUtil and our json simple
+// we'll need to import the WeatherData model, HttpUtil, WeatherApiUtil and our json-simple
 import com.myapp.model.WeatherData;
 import com.myapp.utils.HttpUtil;
 import com.myapp.utils.WeatherApiKeyUtil;
@@ -12,16 +12,13 @@ public class WeatherService {
 
 	private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s&units=metric";
 
-	// this allows us get the data from the API into the format of the WeatherData
-	// model
-	// we may or may not build another overloaded method that takes in country
-	// instead of city and does the same thing for the given Country's weather data
+	// Method to get weather data for a given city and map it to the WeatherData model
 	public WeatherData getWeatherData(String city) {
 		// takes the string format specifier %s and replaces it with the city name and
 		// the API_key
 		String url = String.format(API_URL, city, API_key);
 
-		System.out.println(url);
+//		System.out.println(url); // used this to check if the url was properly processed
 
 		// we store the string response from HttpUtil's fetchData method in a String
 		// variable, response
@@ -35,28 +32,13 @@ public class WeatherService {
 
 	}
 
-	private WeatherData parseWeatherData(String response) {
-		JSONObject jsonObject = new JSONObject(response);
+	
 
-		String city = jsonObject.getString("name");
-		String country= jsonObject.getJSONObject("sys").getString("country");
-		double temperature = jsonObject.getJSONObject("main").getDouble("temp");
-		int highTemp = jsonObject.getJSONObject("main").getInt("temp_max");
-		int lowTemp = jsonObject.getJSONObject("main").getInt("temp_min");
-		int pressure =  jsonObject.getJSONObject("main").getInt("pressure");
-		int humidity = jsonObject.getJSONObject("main").getInt("humidity");
-		double windSpeed =  jsonObject.getJSONObject("wind").getDouble("speed") ;
-		String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
-
-		System.out.println(windSpeed + " " + country + " " +  city + " " +  description);
-		return null;
-	}
-
+//	 Line 68-72 are strictly for testing purposes
 	public static void main(String[] args) {
-		WeatherService test = new WeatherService();
-
-		test.getWeatherData("calgary");
-
+//		WeatherService test = new WeatherService();
+//
+//		test.getWeatherData("toronto");
 	}
 
 }
