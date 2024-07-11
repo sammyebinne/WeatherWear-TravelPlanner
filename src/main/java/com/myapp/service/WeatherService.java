@@ -1,44 +1,57 @@
 package com.myapp.service;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 // we'll need to import the WeatherData model, HttpUtil, WeatherApiUtil and our json-simple
 import com.myapp.model.WeatherData;
 import com.myapp.utils.HttpUtil;
 import com.myapp.utils.WeatherApiKeyUtil;
-import org.json.JSONObject;
 
 public class WeatherService {
 	// calling openweather API key from WeatherApiKeyUtil
 	String API_key = WeatherApiKeyUtil.getApiKey();
+	// from https://openweathermap.org/api/one-call-3
+	private static final String API_URL = "https://api.openweathermap.org/data/3.0/onecall?lat=%f&lon=%f&exclude=current,minutely,hourly,alerts&appid=%s&units=metric";
+	
+	// we create instances of our geocoding service and weatherMap service
+	private final GeocoderService geocoder = new GeocoderService(); // takes in a String input (city name) - returns [x, y]
+	private final WeatherForecastParser forecastMapper = new WeatherForecastParser(); // takes in a response string - return HashMap date ={WeatherData}
+	
 
-	private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s&units=metric";
-
-	// Method to get weather data for a given city and map it to the WeatherData model
-	public WeatherData getWeatherData(String city) {
-		// takes the string format specifier %s and replaces it with the city name and
-		// the API_key
-		String url = String.format(API_URL, city, API_key);
-
-//		System.out.println(url); // used this to check if the url was properly processed
-
-		// we store the string response from HttpUtil's fetchData method in a String
-		// variable, response
-		String response = HttpUtil.fetchData(url);
-
-		System.out.println(response);
-
-		// we then call tour helper method to parse the response data into the
-		// WeatherData object
-		return parseWeatherData(response);
-
+	// Overloaded method to get weather data for a given city entered by user
+	public Map <LocalDate, WeatherData> getWeatherForecastMap(String city) {
+		// get the coordinates array and store in a double array variable
+		double[] coordinates = geocoder.getCoordinates(city);
+		double x = coordinates[0];
+		double y = coordinates[1];
+		
+		// call the over loaded method that takes in two double digits
+		return getWeatherForecastMap(x, y);
 	}
-
+	
+	// Overloaded method to get weather data for a given coordinates either entered by user or called by other overloaded method
+	public Map <LocalDate, WeatherData> getWeatherForecastMap(double x, double y) {
+		// pass in the x & y coords as well as the API key to build the fetch url
+		String url = String.format(API_URL, x, y, API_key);
+		
+		// use the HttpUtil to get the response
+		String response = HttpUtil.fetchData(url);
+		
+		// parse the response into a HashMap using our WeatherForecastParser service
+		Map <LocalDate, WeatherData> forecastMap = forecastMapper.parse(response) ;
+		
+		forecastMap.forEach((key, value) -> System.out.println(key + " " + value));
+		
+		return forecastMap;
+	}
 	
 
 //	 Line 68-72 are strictly for testing purposes
 	public static void main(String[] args) {
-//		WeatherService test = new WeatherService();
-//
-//		test.getWeatherData("toronto");
+		WeatherService test = new WeatherService();
+
+		test.getWeatherForecastMap("toronto");
 	}
 
 }

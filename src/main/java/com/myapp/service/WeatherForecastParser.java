@@ -1,7 +1,9 @@
 package com.myapp.service;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.time.ZoneId;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -14,7 +16,7 @@ public class WeatherForecastParser {
 	// we want to store our weather data in date-WeatherData object key-value pairs
 	public Map<LocalDate, WeatherData> parse(String response) {
 		// first, we create a HashMap
-		Map<LocalDate, WeatherData> weatherForecastMap = new HashMap<>();
+		Map<LocalDate, WeatherData> weatherForecastMap = new LinkedHashMap<>();
 
 		// we want to leverage the API's daily forecast response which returns an array
 		try {
@@ -29,10 +31,13 @@ public class WeatherForecastParser {
 				// each day's forecast stored in an object
 				JSONObject dayForecastObj = jsonArrDaily.getJSONObject(i);
 
-				// we get the epoch-format date from the object and process it to our LocalDate
-				// format
+				// we get the epoch-format date from the object and process it to LocalDate number (UNIX Epoch format)
+				// UNIX Epoch format represents the number of seconds since January 1, 1970 (see foot notes)
 				long dateEpoch = dayForecastObj.getLong("dt");
-				LocalDate day = LocalDate.ofEpochDay(dateEpoch);
+				//we use the Instant class and other Java.time package classes to convert to date
+				LocalDate date = Instant.ofEpochSecond(dateEpoch)
+															.atZone(ZoneId.systemDefault())
+															.toLocalDate();
 
 				// then we extract the other data in our WeatherData model
 				double temperature = dayForecastObj.getJSONObject("temp").getDouble("day");
@@ -43,11 +48,11 @@ public class WeatherForecastParser {
 				String description = dayForecastObj.getJSONArray("weather").getJSONObject(0).getString("description");
 
 				// WeatherData object for day i
-				WeatherData dayForecast = new WeatherData(day, temperature, highTemp, lowTemp, humidity, windSpeed,
+				WeatherData dayForecast = new WeatherData(date, temperature, highTemp, lowTemp, humidity, windSpeed,
 						description);
 
 				// we use the HashMap's put() method to store the key and value
-				weatherForecastMap.put(day, dayForecast);
+				weatherForecastMap.put(date, dayForecast);
 			}
 
 		} catch (Exception e) {
@@ -60,4 +65,7 @@ public class WeatherForecastParser {
 }
 
 // Documentation for API - https://openweathermap.org/api/one-call-3#current
+// Unix time https://en.wikipedia.org/wiki/Unix_time
 // .ofEpochDay() - https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html#ofEpochDay-long-
+// Java Instant - https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html
+// toLocalDate() - https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html

@@ -1,11 +1,11 @@
-/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/views/MainView.java
+/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/service/WeatherForecastParser.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/model/CurrencyData.java
-/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/model/WeatherForecastData.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/service/WeatherService.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/MainApp.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/utils/HttpUtil.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/model/WeatherData.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/service/CurrencyService.java
-/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/utils/JsonUtil.java
+/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/service/GeocoderService.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/controller/MainController.java
+/Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/model/ImageData.java
 /Users/sammyebinne/eclipse-workspace/weather-travel-app/src/main/java/com/myapp/utils/WeatherApiKeyUtil.java

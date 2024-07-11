@@ -59,6 +59,13 @@ public class WeatherData {
 	public String getDescription() {
 		return description;
 	}
+	
+	// override the inherited string method to give us a readable format of the objects of this class
+	@Override
+    public String toString() {
+        return String.format("Date: %s, Temp: %.2f°C, High: %d°C, Low: %d°C, Humidity: %d%%, Wind: %.2f m/s, Description: %s",
+                date, temperature, highTemp, lowTemp, humidity, windSpeed, description);
+    }
 
 }
 

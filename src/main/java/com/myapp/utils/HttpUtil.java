@@ -21,6 +21,8 @@ public class HttpUtil {
 
 			// we send the request and receive the response then convert the response body to a String
 			HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+			
+			System.out.println(response);
 
 			// if statusCode for response is 200, we're successful with the request and can return it
 			if (response.statusCode() == 200) {
