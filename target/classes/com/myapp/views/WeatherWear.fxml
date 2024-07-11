@@ -15,7 +15,7 @@
 	</padding>
 	<Label text="Enter Your Destination City:" />
 	<TextField fx:id="cityTextField" />
-	<Button text="Get Weather" onAction="#handleGetWeather" />
+	<Button text="Get Weather" onAction="#handleUserRequest" />
 	<Label text="Weather Forecast for the Next 7 Days:" />
 	<ListView fx:id="weatherListView" /> 
 </VBox>

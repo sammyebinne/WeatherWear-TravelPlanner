@@ -16,18 +16,21 @@ public class WeatherData {
 	private int lowTemp;
 	private int humidity;
 	private double windSpeed;
+	private String summary;
 	private String description;
+
 	
 
 	// we then create a parameterized constructor
 	public WeatherData(LocalDate date, double temperature, int highTemp, int lowTemp, int humidity, double windSpeed,
-			String description) {
+			String summary, String description) {
 		this.date = date;
 		this.temperature = temperature;
 		this.highTemp = highTemp;
 		this.lowTemp = lowTemp;
 		this.humidity = humidity;
 		this.windSpeed = windSpeed;
+		this.summary = summary;
 		this.description = description;
 	}
 
@@ -56,6 +59,10 @@ public class WeatherData {
 		return windSpeed;
 	}
 
+	public String getSummary() {
+		return summary;
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -63,8 +70,8 @@ public class WeatherData {
 	// override the inherited string method to give us a readable format of the objects of this class
 	@Override
     public String toString() {
-        return String.format("Date: %s, Temp: %.2f°C, High: %d°C, Low: %d°C, Humidity: %d%%, Wind: %.2f m/s, Description: %s",
-                date, temperature, highTemp, lowTemp, humidity, windSpeed, description);
+        return String.format("Date: %s, Temp: %.2f°C, High: %d°C, Low: %d°C, Humidity: %d%%, Wind: %.2f m/s, Summary: %s, Description: %s",
+                date, temperature, highTemp, lowTemp, humidity, windSpeed, summary, description);
     }
 
 }

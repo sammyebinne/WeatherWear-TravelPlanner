@@ -45,10 +45,11 @@ public class WeatherForecastParser {
 				int lowTemp = dayForecastObj.getJSONObject("temp").getInt("min");
 				int humidity = dayForecastObj.getInt("humidity");
 				double windSpeed = dayForecastObj.getDouble("wind_speed");
+				String summary = dayForecastObj.getString("summary");
 				String description = dayForecastObj.getJSONArray("weather").getJSONObject(0).getString("description");
 
 				// WeatherData object for day i
-				WeatherData dayForecast = new WeatherData(date, temperature, highTemp, lowTemp, humidity, windSpeed,
+				WeatherData dayForecast = new WeatherData(date, temperature, highTemp, lowTemp, humidity, windSpeed, summary,
 						description);
 
 				// we use the HashMap's put() method to store the key and value
