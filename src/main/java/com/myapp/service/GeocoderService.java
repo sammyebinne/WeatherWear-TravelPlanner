@@ -1,5 +1,6 @@
 package com.myapp.service;
 
+import java.net.URLEncoder;
 import java.util.Arrays;
 
 import org.json.JSONArray;
@@ -16,17 +17,22 @@ public class GeocoderService {
 	// we use the city input by the user to find the longitude and latitude which
 	// we'll store in an array
 	public double[] getCoordinates(String cityInput) {
-		String url = String.format(geo_API_URL, cityInput, WeatherApiKeyUtil.getApiKey());
-		String response = HttpUtil.fetchData(url);
-
-		// used to check what the response type is
-		// System.out.println(response); // response is an array with an object as its
-		// first element
 
 		try {
+			//including this in the try-catch block for the UnsupportedEncodingException
+			String encodedCity = URLEncoder.encode(cityInput, "UTF-8");
+			
+			String url = String.format(geo_API_URL, encodedCity, WeatherApiKeyUtil.getApiKey());
+			
+			String response = HttpUtil.fetchData(url);
+			
+			// used to check what the response type is
+			// System.out.println(response); // response is an array with an object as its
+			// first element
+			
 			// store the array in a new JSONarray using our json-simple parser
 			JSONArray jsonArr = new JSONArray(response);
-
+			if (jsonArr.length() > 0) {
 			// store first element of jsonArr in a JSONObject variable
 			JSONObject jsonObject = jsonArr.getJSONObject(0);
 
@@ -43,7 +49,9 @@ public class GeocoderService {
 
 			// return the coordinate array
 			return coords;
-
+			} else {
+                throw new RuntimeException("No coordinates found for the city: " + cityInput);
+            }
 		} catch (Exception e) {
 			throw new RuntimeException("Error occured while getting coordinates: ", e); // this should throw an error if
 																						// something goes wrong
@@ -54,9 +62,9 @@ public class GeocoderService {
 	}
 
 	// for testing purposes
-//	public static void main(String[] args) {
-//		new GeocoderService().getCoordinates("lopie");
-//	}
+	public static void main(String[] args) {
+		new GeocoderService().getCoordinates("New york");
+	}
 
 }
 

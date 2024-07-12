@@ -18,12 +18,11 @@ public class WeatherData {
 	private double windSpeed;
 	private String summary;
 	private String description;
-
-	
+	private String iconId;
 
 	// we then create a parameterized constructor
 	public WeatherData(LocalDate date, double temperature, int highTemp, int lowTemp, int humidity, double windSpeed,
-			String summary, String description) {
+			String summary, String description, String iconId) {
 		this.date = date;
 		this.temperature = temperature;
 		this.highTemp = highTemp;
@@ -32,6 +31,7 @@ public class WeatherData {
 		this.windSpeed = windSpeed;
 		this.summary = summary;
 		this.description = description;
+		this.iconId = iconId;
 	}
 
 	// set up getters to retrieve private instance variables
@@ -62,18 +62,23 @@ public class WeatherData {
 	public String getSummary() {
 		return summary;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
-	
-	// override the inherited string method to give us a readable format of the objects of this class
-	@Override
-    public String toString() {
-        return String.format("Date: %s, Temp: %.2f°C, High: %d°C, Low: %d°C, Humidity: %d%%, Wind: %.2f m/s, Summary: %s, Description: %s",
-                date, temperature, highTemp, lowTemp, humidity, windSpeed, summary, description);
-    }
 
+	public String getIconId() {
+		return iconId;
+	}
+
+	// override the inherited string method to give us a readable format of the
+	// objects of this class
+	@Override
+	public String toString() {
+		return String.format(
+				"Date: %s, Temp: %.2f°C, High: %d°C, Low: %d°C, Humidity: %d%%, Wind: %.2f m/s, Summary: %s, Description: %s, iconId: %s",
+				date, temperature, highTemp, lowTemp, humidity, windSpeed, summary, description, iconId);
+	}
 }
 
 // java.time package - https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html

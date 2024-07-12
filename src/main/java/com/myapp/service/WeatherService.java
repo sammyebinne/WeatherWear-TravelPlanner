@@ -34,7 +34,7 @@ public class WeatherService {
 	public Map <LocalDate, WeatherData> getWeatherForecastMap(double x, double y) {
 		// pass in the x & y coords as well as the API key to build the fetch url
 		String url = String.format(API_URL, x, y, API_key);
-		
+			
 		// use the HttpUtil to get the response
 		String response = HttpUtil.fetchData(url);
 		

@@ -24,6 +24,8 @@ public class WeatherForecastParser {
 			JSONObject jsonObj = new JSONObject(response);
 			// the daily forecasts come in an array
 			JSONArray jsonArrDaily = jsonObj.getJSONArray("daily");
+			
+			System.out.println(jsonArrDaily);
 
 			// we want to loop through the "daily" array to get all 8 days' weather and
 			// treat each before storing in map
@@ -47,10 +49,11 @@ public class WeatherForecastParser {
 				double windSpeed = dayForecastObj.getDouble("wind_speed");
 				String summary = dayForecastObj.getString("summary");
 				String description = dayForecastObj.getJSONArray("weather").getJSONObject(0).getString("description");
+				String iconId = dayForecastObj.getJSONArray("weather").getJSONObject(0).getString("icon");
 
 				// WeatherData object for day i
 				WeatherData dayForecast = new WeatherData(date, temperature, highTemp, lowTemp, humidity, windSpeed, summary,
-						description);
+						description, iconId);
 
 				// we use the HashMap's put() method to store the key and value
 				weatherForecastMap.put(date, dayForecast);

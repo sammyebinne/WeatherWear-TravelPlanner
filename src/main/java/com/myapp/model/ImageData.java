@@ -16,6 +16,9 @@ public class ImageData {
 		case "13d" -> "/com/myapp/views/images/13d.png";
 		case "50d" -> "/com/myapp/views/images/50d.png";
 		case "50n" -> "/com/myapp/views/images/50n.png";
+		case "humidity" -> "/com/myapp/views/images/humidity.png";
+		case "temp" -> "/com/myapp/views/images/temp.png";
+		case "wind" -> "/com/myapp/views/images/wind.png";
 		default -> "/com/myapp/views/images/01d.png";
 		};
 

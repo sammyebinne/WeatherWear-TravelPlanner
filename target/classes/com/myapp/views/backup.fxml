@@ -1,0 +1,12 @@
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/20"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.myapp.controller.MainController">
+	<padding>
+		<Insets top="20" right="20" bottom="20" left="20" />
+	</padding>
+	<Label text="Enter Your Destination City:" />
+	<TextField fx:id="cityTextField" />
+	<Button text="Get Weather" onAction="#handleUserRequest" />
+	<Label text="Weather Forecast for the Next 7 Days:" />
+	<ListView fx:id="weatherListView" /> 
+</VBox>
