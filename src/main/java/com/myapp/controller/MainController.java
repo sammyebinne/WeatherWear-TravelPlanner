@@ -59,12 +59,13 @@ public class MainController {
 
     
     @FXML
-    private void initialize() {
-        // Set fixed icons for temperature, humidity, and wind
+    private void initialize() { // called as soon as the start method fires
+    	// generate the resource location for our images
     	 String imgResourceTemperature = ImageData.getImage("temp");
          String imgResourceHumidity = ImageData.getImage("humidity");
          String imgResourceWind = ImageData.getImage("wind");
          
+         // Set fixed icons for temperature, humidity, and wind
         temperatureIcon.setImage(new Image(getClass().getResource(imgResourceTemperature).toExternalForm()));
         humidityIcon.setImage(new Image(getClass().getResource(imgResourceHumidity).toExternalForm()));
         windIcon.setImage(new Image(getClass().getResource(imgResourceWind).toExternalForm()));
@@ -121,6 +122,10 @@ public class MainController {
 																							.get(dayIndex);
 		// select the recommendation for that day as well from the recommendations list
         String recommendation = recommendations.get(dayIndex);
+        
+        //set date
+        dateLabel.setText("Weather conditions for " + weatherData.getDate());
+        
         //get weather condition image for current day
         String imgResourceGeneral = ImageData.getImage(weatherData.getIconId());
         // convert it to a javafx image obj

@@ -1,7 +1,6 @@
 package com.myapp.service;
 
 import java.net.URLEncoder;
-import java.util.Arrays;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -45,7 +44,7 @@ public class GeocoderService {
 			// create a double array to store the coordinates
 			double[] coords = { latitude, longitude };
 
-			System.out.println(Arrays.toString(coords));
+//			System.out.println(Arrays.toString(coords));
 
 			// return the coordinate array
 			return coords;
@@ -62,9 +61,9 @@ public class GeocoderService {
 	}
 
 	// for testing purposes
-	public static void main(String[] args) {
-		new GeocoderService().getCoordinates("New york");
-	}
+//	public static void main(String[] args) {
+//		new GeocoderService().getCoordinates("New york");
+//	}
 
 }
 

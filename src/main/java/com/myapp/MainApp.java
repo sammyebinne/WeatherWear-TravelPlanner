@@ -21,7 +21,7 @@ public class MainApp extends Application {
 			scene.getStylesheets().add(getClass().getResource("/com/myapp/views/styles.css").toExternalForm());
 			// set the scene on the stage
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Weather App");
+			primaryStage.setTitle("WeatherWear Travel App");
 			// show the stage
 			primaryStage.show();
 		} catch (Exception e) { // handle exceptions from loading fxml, initializing UI or triggering event handlers
